@@ -5,9 +5,11 @@ public class UserRegistration{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         String firstName = getFirstName(sc);
-        System.out.println("The first name entered is : " + firstName);
+        System.out.println("The first name is : " + firstName);
         String lastName = getLastName(sc);
-        System.out.println("The last name entered is : " + lastName);
+        System.out.println("The last name is : " + lastName);
+        String phoneNumber = getPhoneNumber(sc);
+        System.out.println("The phone number is : " + phoneNumber);
     }
 
     public static String getFirstName(Scanner s){
@@ -42,4 +44,21 @@ public class UserRegistration{
             return getLastName(s);
         }
     }
+
+    public static String getPhoneNumber(Scanner s){
+        System.out.println("Enter the phone number:");
+        String phoneNumber = s.nextLine();
+        Pattern p = Pattern.compile("^(\\+?\\d{1,3}|\\d{1,4})\\s[1-9][0-9]{9}");
+        Matcher matcher = p.matcher(phoneNumber);
+        if(matcher.matches()){
+            System.out.println("Valid phone number");
+            return phoneNumber;
+        }
+        else{
+            System.out.println("Invalid phone number");
+            return getPhoneNumber(s);
+
+        }
+    }
 }
+
