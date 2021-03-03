@@ -10,6 +10,9 @@ public class UserRegistration{
         System.out.println("The last name is : " + lastName);
         String phoneNumber = getPhoneNumber(sc);
         System.out.println("The phone number is : " + phoneNumber);
+        String email = getEmail(sc);
+        System.out.println("The email id is : " + email);
+
     }
 
     public static String getFirstName(Scanner s){
@@ -57,6 +60,22 @@ public class UserRegistration{
         else{
             System.out.println("Invalid phone number");
             return getPhoneNumber(s);
+
+        }
+    }
+
+    public static String getEmail(Scanner s){
+        System.out.println("Enter the email address:");
+        String email = s.nextLine();
+        Pattern p = Pattern.compile("^([a-zA-Z0-9+-](\\.?[a-zA-Z0-9_])*@[a-zA-Z]+[.][a-zA-Z]{2,3}([.]?[a-zA-Z]{2,3})?)$");
+        Matcher matcher = p.matcher(email);
+        if(matcher.matches()){
+            System.out.println("Valid email id");
+            return email;
+        }
+        else{
+            System.out.println("Invalid email id");
+            return getEmail(s);
 
         }
     }
