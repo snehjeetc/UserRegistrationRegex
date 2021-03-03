@@ -12,6 +12,9 @@ public class UserRegistration{
         System.out.println("The phone number is : " + phoneNumber);
         String email = getEmail(sc);
         System.out.println("The email id is : " + email);
+        String password = getPassword(sc);
+        System.out.println("The password is : " + password);
+        sc.close();
 
     }
 
@@ -77,6 +80,25 @@ public class UserRegistration{
             System.out.println("Invalid email id");
             return getEmail(s);
 
+        }
+    }
+
+    public static String getPassword(Scanner sc) {
+        System.out.println("Enter password "
+                + "(must conatain atleast a uppercase, "
+                + "lowercase, digit and "
+                + "exactly one special character "
+                + "of minimum length 8):  ");
+        Pattern p = Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=[^$@!#%*?&]*[$#@!%*?&][^$@!#%*?&]*$).{8,}");
+        String passWord = sc.nextLine();
+        Matcher matcher = p.matcher(passWord);
+        if(matcher.matches()) {
+            System.out.println("Valid password");
+            return passWord;
+        }
+        else {
+            System.out.println("Invalid password");
+            return getPassword(sc);
         }
     }
 }
